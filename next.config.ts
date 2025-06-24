@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.microcms-assets.io', // あなたのmicroCMSの画像ドメイン
+        hostname: 'images.microcms-assets.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
       },
     ],
   },

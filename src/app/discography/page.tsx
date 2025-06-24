@@ -32,7 +32,7 @@ type ApiResponse = {
 
 export default async function DiscographyPage() {
   // microCMSからデータを取得
-  const data: ApiResponse = await client.get({ endpoint: "discographies" });
+  const data: ApiResponse = await client.get({ endpoint: "discographies", queries: { limit: 100 } });
 
   return (
     <div>
