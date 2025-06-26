@@ -47,18 +47,31 @@ if (showSplash) {
           <Link href="/discography" className="group flex aspect-square items-center justify-center border border-accent-1 bg-white p-4 transition-colors hover:bg-accent-2 hover:text-white">Music</Link>
           <Link href="/live" className="group flex aspect-square items-center justify-center border border-accent-1 bg-white p-4 transition-colors hover:bg-accent-2 hover:text-white">Live</Link>
           <Link href="/profile" className="group flex aspect-square items-center justify-center border border-accent-1 bg-white p-4 transition-colors hover:bg-accent-2 hover:text-white">Profile</Link>
-          <Link href="/movies" className="group aspect-square flex items-center justify-center overflow-hidden border border-accent-1 bg-white p-4 transition-colors hover:bg-accent-2">
-            <div className="flex h-full w-full items-center overflow-hidden rounded-full bg-accent-2 transition-colors group-hover:bg-white">
+          <Link href="/movies" className="group aspect-square flex items-center justify-center overflow-hidden border border-accent-1 bg-white p-4 transition-colors duration-300 hover:bg-accent-2">
+            {/* 円の背景色と、ホバー時の色を指定 */}
+            <div className="flex h-full w-full items-center overflow-hidden rounded-full bg-accent-2 transition-colors duration-300 group-hover:bg-white">
               <div className="flex w-full -rotate-12 scale-150">
                 <div className="animate-marquee-inner flex w-max items-center">
-                  <div className="flex w-max items-center">{[...Array(4)].map((_, i) => (<span key={i} className="mx-8 font-sans text-2xl font-bold text-white transition-colors group-hover:text-accent-2">VIDEO</span>))}</div>
-                  <div className="flex w-max items-center" aria-hidden="true">{[...Array(4)].map((_, i) => (<span key={i} className="mx-8 font-sans text-2xl font-bold text-white transition-colors group-hover:text-accent-2">VIDEO</span>))}</div>
+                  <div className="flex w-max items-center">
+                    {/* テキストの色と、ホバー時の色を指定 */}
+                    {[...Array(4)].map((_, i) => (
+                      <span key={`video1-${i}`} className="mx-8 font-sans text-2xl font-bold text-white transition-colors duration-300 group-hover:text-accent-2">VIDEO</span>
+                    ))}
+                  </div>
+                  <div className="flex w-max items-center" aria-hidden="true">
+                    {[...Array(4)].map((_, i) => (
+                      <span key={`video2-${i}`} className="mx-8 font-sans text-2xl font-bold text-white transition-colors duration-300 group-hover:text-accent-2">VIDEO</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </Link>
-          <div className="flex items-center justify-center border border-accent-1 bg-white p-4 md:col-span-2 md:aspect-video">
-            <Image src="/image/homeimg.png" alt="Homepage Image" width={800} height={450} className="h-full w-full object-contain" />
+          <div className="relative border border-accent-1 bg-white md:col-span-2 md:aspect-video">
+            <Image src="/image/homeimg.png" alt="Homepage Image" 
+              fill 
+              className="object-cover" 
+            />
           </div>
           <div className="flex aspect-square items-center justify-center border border-accent-1 bg-white p-4">Harp</div>
           <a href="https://kanekoshouten.jp/" target="_blank" rel="noopener noreferrer" className="group flex aspect-square items-center justify-center gap-2 border border-accent-1 bg-white p-4 transition-colors hover:bg-accent-2 hover:text-white">
