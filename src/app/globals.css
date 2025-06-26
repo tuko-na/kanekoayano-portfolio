@@ -29,3 +29,13 @@ body {
 a {
   font-family: inherit;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee-inner {
+  display: flex;
+  animation: marquee 40s linear infinite;
+}
