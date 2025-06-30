@@ -15,10 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      {/* classNameに "font-sans" が指定されていることを確認 */}
-      <body className="font-sans antialiased flex flex-col min-h-screen relative">
+      {/* bodyのクラスを新しいカラーパレットに合わせて修正 */}
+      <body className="font-sans antialiased flex flex-col min-h-screen relative bg-background text-foreground">
         <Header />
-        <main className="flex-grow pt-16 sm:pt-24">{children}</main>
+        <main className="flex-grow pt-20 sm:pt-24">{children}</main>
         <Footer />
       </body>
     </html>

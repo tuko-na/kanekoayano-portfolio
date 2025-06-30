@@ -8,8 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        background: '#f7f6f2', // 落ち着いたベージュ系の背景色
+        surface: '#ffffff',    // カードや要素の背景色 (白)
+        foreground: '#1c1c1c', // 真っ黒ではない文字色
+        border: '#e5e7eb',     // 控えめなボーダー色 (グレー)
+        accent: '#232323',     // ホバー時などに使う濃いグレー
+      },
       fontFamily: {
-        // 'sans' という名前で游明朝体のフォントセットを定義
         sans: [
           'Yu Mincho',
           '游明朝体',
