@@ -57,12 +57,22 @@ export default function Home() {
             </Link>
           ))}
 
-          <Link href="/discography" className="group flex aspect-square items-center justify-center border border-border bg-surface p-4">
+          <Link
+            href="/discography"
+            className="group flex aspect-square items-center justify-center rounded-lg border border-accent-1 bg-white text-foreground shadow-sm transition-colors hover:border-transparent"
+          >
             {/* 1. 枠の85%の黒い丸 */}
-            <div className="flex h-[85%] w-[85%] items-center justify-center rounded-full bg-accent">
+            <div className="flex h-[85%] w-[85%] items-center justify-center rounded-full bg-accent transition-colors">
               {/* 2. その中に、さらに85%の大きさの白い丸 */}
               <div className="flex h-[40%] w-[40%] items-center justify-center rounded-full bg-white">
-                <span className="font-sans text-xl font-bold text-accent transition-transform duration-500 group-hover:animate-spin-slow">
+                {/* 3. 白い丸の中にMusicの文字を配置 */}
+                <span
+                  className="font-sans text-xl font-bold text-accent transition-transform duration-500 group-hover:rotate-360"
+                  style={{
+                    display: 'inline-block',
+                    transition: 'transform 1s',
+                  }}
+                >
                   Music
                 </span>
               </div>
@@ -99,6 +109,18 @@ export default function Home() {
             Goods Store <FiExternalLink />
           </a>
         </div>
+
+        {/* 追加: 回転アニメーションのkeyframesをstyleタグで直書き */}
+        <style>{`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+
+.group:hover .group-hover\\:rotate-360 {
+  transform: rotate(360deg);
+}
+        `}</style>
       </motion.div>
     </AnimatePresence>
   );
