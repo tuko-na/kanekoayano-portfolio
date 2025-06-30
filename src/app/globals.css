@@ -1,41 +1,13 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  /* 游明朝体を反映させるためfont-familyをTailwindのfont-serifに合わせる */
-  font-family: 'Yu Mincho', '游明朝体', 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', serif;
-}
-
-a {
-  font-family: inherit;
-}
-
+/* marqueeアニメーションの定義だけを残す */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-.animate-marquee-inner {
-  display: flex;
+.animate-marquee {
   animation: marquee 40s linear infinite;
 }

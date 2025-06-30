@@ -45,7 +45,6 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
           {/** リンクカード共通スタイル */}
           {[
-            { href: "/discography", label: "Music" },
             { href: "/live", label: "Live" },
             { href: "/profile", label: "Profile" },
           ].map(({ href, label }) => (
@@ -57,6 +56,18 @@ export default function Home() {
               {label}
             </Link>
           ))}
+
+          <Link href="/discography" className="group flex aspect-square items-center justify-center border border-border bg-surface p-4">
+            {/* 1. 枠の85%の黒い丸 */}
+            <div className="flex h-[85%] w-[85%] items-center justify-center rounded-full bg-accent">
+              {/* 2. その中に、さらに85%の大きさの白い丸 */}
+              <div className="flex h-[40%] w-[40%] items-center justify-center rounded-full bg-white">
+                <span className="font-sans text-xl font-bold text-accent transition-transform duration-500 group-hover:animate-spin-slow">
+                  Music
+                </span>
+              </div>
+            </div>
+          </Link>
 
           {/* Movie用の円形リンクカード */}
           <Link href="/movies" className="group flex aspect-square items-center justify-center border border-border bg-surface p-4">
