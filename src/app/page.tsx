@@ -1,13 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 
+
+
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
+    const harpControls = useAnimationControls();
+
+// Harpアニメーションを再生する関数
+  const playHarpAnimation = () => {
+    harpControls.start({
+      // ▼▼▼ d属性の配列とtransitionを置き換える ▼▼▼
+      d: [
+        "M 14 0 Q 14 130 14 260",  // 0% - 静止
+        "M 14 0 Q -16 130 14 260", // 15% - 左に最大にしなる
+        "M 14 0 Q 44 130 14 260",  // 30% - 右に大きく揺れ戻す
+        "M 14 0 Q 4 130 14 260",   // 45% - 左に揺れ戻す
+        "M 14 0 Q 24 130 14 260",  // 60% - 右に小さく
+        "M 14 0 Q 12 130 14 260",  // 75% - 左にさらに小さく
+        "M 14 0 Q 15 130 14 260",  // 90% - 右に微かに
+        "M 14 0 Q 14 130 14 260",  // 100% - 静止に戻る
+      ],
+      transition: {
+        duration: 0.5, // 再生時間を0.5秒に短縮し、速さを出す
+        ease: "easeInOut",
+        // キーフレームの数に合わせてtimesも更新
+        times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1],
+      },
+    });
+  };
 
   if (showSplash) {
     return (
@@ -95,41 +121,22 @@ export default function Home() {
           </div>
 
 
-          {/* ▼▼▼ "Harp"のmotion.divをこのブロックで置き換え ▼▼▼ */}
+          {/* ▼▼▼ Harp要素を修正 ▼▼▼ */}
           <motion.div
             className="flex aspect-square cursor-pointer items-center justify-center border border-border bg-surface p-4"
-            whileHover="hovering" // 親要素のホバー中に"hovering"状態を起動
-            initial="normal"   // 通常状態は"normal"
+            onMouseEnter={playHarpAnimation} // ホバーした瞬間にアニメーションを再生
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 28 260" // Tempalayの比率に近い縦長の座標系
-              className="h-2/3" // 表示する高さを指定
+              viewBox="0 0 28 260"
+              className="h-2/3"
             >
               <motion.path
+                d="M 14 0 Q 14 130 14 260" // 初期状態のパス
                 stroke="currentColor"
-                strokeWidth="1" // 線を細く
-                variants={{
-                  // 通常時の状態（見た目はまっすぐな線）
-                  normal: { 
-                    d: "M 14 0 Q 14 130 14 260" 
-                  },
-                  // ホバー時のアニメーション
-                  hovering: {
-                    d: [
-                      "M 14 0 Q 14 130 14 260", // 開始
-                      "M 14 0 Q 5 130 14 260",  // 左にしなる
-                      "M 14 0 Q 23 130 14 260",  // 右に揺れ戻す
-                      "M 14 0 Q 10 130 14 260",  // 左に小さく
-                      "M 14 0 Q 18 130 14 260",  // 右に小さく
-                      "M 14 0 Q 14 130 14 260",  // 元に戻る
-                    ],
-                    transition: {
-                      duration: 0.5,
-                      ease: "easeInOut",
-                    },
-                  }
-                }}
+                strokeWidth="1"
+                fill="transparent"
+                animate={harpControls} // アニメーションをコントローラーに紐付け
               />
             </svg>
           </motion.div>
