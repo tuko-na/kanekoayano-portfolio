@@ -94,10 +94,45 @@ export default function Home() {
             />
           </div>
 
-          {/** Harp 枠 */}
-          <div className="flex aspect-square items-center justify-center rounded-lg border border-accent-1 bg-white text-foreground shadow-sm">
-            Harp
-          </div>
+
+          {/* ▼▼▼ "Harp"のmotion.divをこのブロックで置き換え ▼▼▼ */}
+          <motion.div
+            className="flex aspect-square cursor-pointer items-center justify-center border border-border bg-surface p-4"
+            whileHover="hovering" // 親要素のホバー中に"hovering"状態を起動
+            initial="normal"   // 通常状態は"normal"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 28 260" // Tempalayの比率に近い縦長の座標系
+              className="h-2/3" // 表示する高さを指定
+            >
+              <motion.path
+                stroke="currentColor"
+                strokeWidth="1" // 線を細く
+                variants={{
+                  // 通常時の状態（見た目はまっすぐな線）
+                  normal: { 
+                    d: "M 14 0 Q 14 130 14 260" 
+                  },
+                  // ホバー時のアニメーション
+                  hovering: {
+                    d: [
+                      "M 14 0 Q 14 130 14 260", // 開始
+                      "M 14 0 Q 5 130 14 260",  // 左にしなる
+                      "M 14 0 Q 23 130 14 260",  // 右に揺れ戻す
+                      "M 14 0 Q 10 130 14 260",  // 左に小さく
+                      "M 14 0 Q 18 130 14 260",  // 右に小さく
+                      "M 14 0 Q 14 130 14 260",  // 元に戻る
+                    ],
+                    transition: {
+                      duration: 0.5,
+                      ease: "easeInOut",
+                    },
+                  }
+                }}
+              />
+            </svg>
+          </motion.div>
 
           {/** 外部リンク */}
           <a
@@ -117,9 +152,9 @@ export default function Home() {
             to { transform: rotate(360deg); }
           }
 
-.group:hover .group-hover\\:rotate-360 {
-  transform: rotate(360deg);
-}
+          .group:hover .group-hover\\:rotate-360 {
+            transform: rotate(360deg);
+          }
         `}</style>
       </motion.div>
     </AnimatePresence>
